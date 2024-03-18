@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import useGetData from './hooks/useGetData';
+import Card from './components/Card';
+import Loading from './components/Loading';
+import Expired from './components/Expired';
 
 function App() {
+  const { data, loading, expired } = useGetData();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="p-5 flex flex-wrap gap-10 items-center justify-center">
+      {loading && <Loading />}
+      {data?.map((item) => (
+        <Card
+          timestamp={item.timestamp}
+          open={item.open}
+          high={item.high}
+          low={item.low}
+          close={item.close}
+          volume={item.volume}
+        />
+      ))}
+      {expired.isExpired && (
+        <Expired message={expired.message} />
+      )}
     </div>
   );
 }
