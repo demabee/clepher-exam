@@ -1,3 +1,7 @@
+## Demo Project
+
+Check out the demo of the project [here](https://clepher-exam.netlify.app/).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
